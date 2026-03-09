@@ -264,18 +264,15 @@ export default function AIPanel({
 
           <div>
             <label style={{ fontSize: 11, color: '#6b7280', display: 'block', marginBottom: 4 }}>Language</label>
-            <select>
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="ja">Japanese</option>
+            {/* whisper-tiny.en is English-only; a multilingual model would be needed for other languages */}
+            <select value="en" onChange={() => {}}>
+              <option value="en">English (only)</option>
             </select>
           </div>
 
           <div>
             <label style={{ fontSize: 11, color: '#6b7280', display: 'block', marginBottom: 4 }}>
-              Note: Uses Whisper (tiny.en model, ~74MB)
+              Note: Uses Whisper (tiny.en model, ~74MB, English only)
             </label>
             <div
               style={{

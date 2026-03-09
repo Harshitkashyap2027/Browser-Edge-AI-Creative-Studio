@@ -25,7 +25,6 @@ async function loadModel(id: string): Promise<void> {
   isLoading = true;
 
   try {
-    // @ts-ignore
     const { pipeline: createPipeline, env } = await import('@xenova/transformers');
     
     env.allowLocalModels = false;
