@@ -10,7 +10,7 @@ interface WorkerMessage {
   };
 }
 
-function applyAnimeStyle(data: Uint8ClampedArray, _width: number, _height: number, strength: number): void {
+function applyAnimeStyle(data: Uint8ClampedArray, width: number, height: number, strength: number): void {
   const levels = Math.max(2, Math.round(8 * (1 - strength) + 2));
   const step = 255 / (levels - 1);
 

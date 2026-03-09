@@ -264,8 +264,8 @@ export default function AIPanel({
 
           <div>
             <label style={{ fontSize: 11, color: '#6b7280', display: 'block', marginBottom: 4 }}>Language</label>
-            {/* whisper-tiny.en is English-only; a multilingual model would be needed for other languages */}
-            <select value="en" onChange={() => {}}>
+            {/* whisper-tiny.en only supports English */}
+            <select value="en" disabled>
               <option value="en">English (only)</option>
             </select>
           </div>
