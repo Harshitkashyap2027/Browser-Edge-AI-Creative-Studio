@@ -30,6 +30,11 @@ export default function Studio() {
   } = useStudio();
 
   const captioningWorkerRef = useRef<Worker | null>(null);
+  const videoElementRef = useRef<HTMLVideoElement | null>(null);
+
+  const handleVideoElementReady = useCallback((video: HTMLVideoElement) => {
+    videoElementRef.current = video;
+  }, []);
 
   const handleVideoUpload = useCallback(
     (file: File) => {
@@ -49,8 +54,7 @@ export default function Studio() {
   const handleSeek = useCallback(
     (time: number) => {
       setCurrentTime(time);
-      const video = document.querySelector('video') as HTMLVideoElement | null;
-      if (video) video.currentTime = time;
+      if (videoElementRef.current) videoElementRef.current.currentTime = time;
     },
     [setCurrentTime]
   );
@@ -153,6 +157,7 @@ export default function Studio() {
             onTimeUpdate={setCurrentTime}
             onDurationChange={setDuration}
             onPlayingChange={setIsPlaying}
+            onVideoElementReady={handleVideoElementReady}
             volume={state.volume}
           />
 

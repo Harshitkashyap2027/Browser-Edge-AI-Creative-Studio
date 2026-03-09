@@ -17,6 +17,7 @@ interface VideoCanvasProps {
   onTimeUpdate: (time: number) => void;
   onDurationChange: (duration: number) => void;
   onPlayingChange: (isPlaying: boolean) => void;
+  onVideoElementReady?: (video: HTMLVideoElement) => void;
   volume: number;
 }
 
@@ -32,11 +33,20 @@ export default function VideoCanvas({
   onTimeUpdate,
   onDurationChange,
   onPlayingChange,
+  onVideoElementReady,
   volume,
 }: VideoCanvasProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Expose the video element to the parent via callback ref so the parent
+  // can seek without relying on document.querySelector.
+  useEffect(() => {
+    if (videoRef.current && onVideoElementReady) {
+      onVideoElementReady(videoRef.current);
+    }
+  }, [onVideoElementReady]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -162,7 +172,6 @@ export default function VideoCanvas({
             ref={videoRef}
             style={{ display: 'none' }}
             playsInline
-            crossOrigin="anonymous"
           />
         </>
       )}

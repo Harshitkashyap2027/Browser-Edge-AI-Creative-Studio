@@ -63,6 +63,8 @@ function applyMasking(
     }
 
     const isSkin =
+      // HSV ranges covering light to dark skin tones across ethnicities:
+      // Hue 0–50° (red-orange-yellow), moderate saturation, non-black value
       h >= 0 && h <= 50 && s >= 0.1 && s <= 0.9 && v >= 0.2;
 
     const isNearWhite = r > 220 && g > 220 && b > 220;

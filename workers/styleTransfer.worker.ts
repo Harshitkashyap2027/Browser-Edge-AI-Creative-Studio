@@ -192,6 +192,7 @@ function applyWatercolorStyle(data: Uint8ClampedArray, width: number, height: nu
 
       data[i] = Math.min(255, data[i] * 1.05);
       data[i + 1] = Math.min(255, data[i + 1] * 1.02);
+      data[i + 2] = Math.min(255, data[i + 2] * 0.98);
     }
   }
 }
